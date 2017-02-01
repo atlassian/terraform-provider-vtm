@@ -1,12 +1,12 @@
-hash: c37cb000fbc5e2e2c8fc99274551cd3b5477158f595a5845badb413bd059cbf4
-updated: 2016-09-22T13:48:30.356638918-07:00
+hash: 2d961d12a3c3d1fd18b44488284fce01e5c720a17474f32530be02237bf182f1
+updated: 2017-01-31T15:34:23.972170358-06:00
 imports:
 - name: github.com/apparentlymart/go-cidr
   version: a3ebdb999b831ecb6ab8a226e31b07b2b9061c47
   subpackages:
   - cidr
 - name: github.com/atlassian/go-vtm
-  version: 2ce113db9d38efcb7286689adae846d5c4fa3eba
+  version: 1b9ea643ef5418c9ab1b1da3f763a501339c4716
 - name: github.com/aws/aws-sdk-go
   version: 2cc71659118a868dc7544a7ef0808eb42d487011
   subpackages:
@@ -64,16 +64,17 @@ imports:
   subpackages:
   - ast
 - name: github.com/hashicorp/terraform
-  version: 84592f5967490d118aae0b61a25d589d269fd0b6
+  version: b4d477660b5abd20f2a70175460c9603797fada0
   subpackages:
   - config
   - config/module
   - dag
-  - dot
   - flatmap
+  - helper/experiment
   - helper/hashcode
   - helper/hilmapstructure
   - helper/schema
+  - helper/shadow
   - plugin
   - terraform
 - name: github.com/hashicorp/yamux
