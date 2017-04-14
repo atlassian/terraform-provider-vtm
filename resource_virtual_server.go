@@ -173,7 +173,6 @@ func resourceVirtualServer() *schema.Resource {
                                 Type:          schema.TypeList,
                                 Optional:      true,
                                 Elem:          &schema.Schema{Type: schema.TypeString},
-                                PromoteSingle: true,
                         },
 
 			"ssl_server_cert_host_mapping": &schema.Schema{
