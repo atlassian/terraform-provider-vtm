@@ -170,9 +170,10 @@ func resourceVirtualServer() *schema.Resource {
 			},
 
                         "ssl_server_cert_alt_certificates": &schema.Schema{
-                                Type:     schema.TypeString,
-                                Optional: true,
-                                Default:  "",
+                                Type:          schema.TypeList,
+                                Optional:      true,
+                                Elem:          &schema.Schema{Type: schema.TypeString},
+                                PromoteSingle: true,
                         },
 
 			"ssl_server_cert_host_mapping": &schema.Schema{
@@ -262,7 +263,7 @@ func resourceVirtualServerRead(d *schema.ResourceData, meta interface{}) error {
 	d.Set("ssl_add_http_headers", bool(*r.SSL.AddHTTPHeaders))
 	d.Set("ssl_decrypt", bool(*r.Basic.SSLDecrypt))
 	d.Set("ssl_server_cert_default", string(*r.SSL.ServerCertDefault))
-        d.Set("ssl_server_cert_alt_certificates", string(*r.SSL.ServerCertAltCertificates))
+        d.Set("ssl_server_cert_alt_certificates", []string(*r.SSL.ServerCertAltCertificates))
 	d.Set("ssl_server_cert_host_mapping", flattenServerCertHostMappingTable(*r.SSL.ServerCertHostMapping))
 	d.Set("syslog_format", string(*r.Syslog.Format))
 	d.Set("web_cache_enabled", bool(*r.WebCache.Enabled))
