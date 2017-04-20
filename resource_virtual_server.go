@@ -329,7 +329,7 @@ func resourceVirtualServerSet(d *schema.ResourceData, meta interface{}) error {
 	setBool(&r.SSL.AddHTTPHeaders, d, "ssl_add_http_headers")
 	setBool(&r.Basic.SSLDecrypt, d, "ssl_decrypt")
 	setString(&r.SSL.ServerCertDefault, d, "ssl_server_cert_default")
-        setString(&r.SSL.ServerCertAltCertificates, d, "ssl_server_cert_alt_certificates")
+        setStringList(&r.SSL.ServerCertAltCertificates, d, "ssl_server_cert_alt_certificates")
 	setServerCertHostMappingTable(&r.SSL.ServerCertHostMapping, d, "ssl_server_cert_host_mapping")
 	setString(&r.Syslog.Format, d, "syslog_format")
 	setBool(&r.WebCache.Enabled, d, "web_cache_enabled")
