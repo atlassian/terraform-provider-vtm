@@ -7,7 +7,7 @@ import (
 
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
-	"github.com/whitepages/go-stingray"
+	"github.com/atlassian/go-vtm"
 )
 
 // Provider returns a terraform.ResourceProvider.

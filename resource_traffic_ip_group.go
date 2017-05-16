@@ -5,7 +5,7 @@ import (
 	"net"
 
 	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/whitepages/go-stingray"
+	"github.com/atlassian/go-vtm"
 )
 
 func resourceTrafficIPGroup() *schema.Resource {
