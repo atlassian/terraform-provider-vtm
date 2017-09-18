@@ -274,6 +274,16 @@ func resourceVirtualServer() *schema.Resource {
 				Optional: true,
 				Default:  30,
 			},
+			"max_client_buffer": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  65536,
+			},
+			"max_server_buffer": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Default:  65536,
+			},
 		},
 	}
 }
@@ -344,6 +354,8 @@ func resourceVirtualServerRead(d *schema.ResourceData, meta interface{}) error {
 	d.Set("web_cache_refresh_time", int(*r.WebCache.RefreshTime))
 	d.Set("web_cache_control_out", string(*r.WebCache.ControlOut))
 	d.Set("web_cache_error_page_time", int(*r.WebCache.ErrorPageTime))
+	d.Set("max_client_buffer", int(*r.Connection.MaxClientBuffer))
+	d.Set("max_server_buffer", int(*r.Connection.MaxServerBuffer))
 
 	return nil
 }
@@ -424,6 +436,8 @@ func resourceVirtualServerSet(d *schema.ResourceData, meta interface{}) error {
 	setInt(&r.WebCache.ErrorPageTime, d, "web_cache_error_page_time")
 	setInt(&r.WebCache.RefreshTime, d, "web_cache_refresh_time")
 	setString(&r.WebCache.ControlOut, d, "web_cache_control_out")
+	setInt(&r.Connection.MaxClientBuffer, d, "max_client_buffer")
+	setInt(&r.Connection.MaxServerBuffer, d, "max_server_buffer")
 
 	_, err := c.Set(r)
 	if err != nil {
