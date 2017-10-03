@@ -284,6 +284,11 @@ func resourceVirtualServer() *schema.Resource {
 				Optional: true,
 				Default:  65536,
 			},
+			"ssl_ciphers": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "",
+			},
 		},
 	}
 }
@@ -356,6 +361,7 @@ func resourceVirtualServerRead(d *schema.ResourceData, meta interface{}) error {
 	d.Set("web_cache_error_page_time", int(*r.WebCache.ErrorPageTime))
 	d.Set("max_client_buffer", int(*r.Connection.MaxClientBuffer))
 	d.Set("max_server_buffer", int(*r.Connection.MaxServerBuffer))
+	d.Set("ssl_ciphers", string(*r.SSL.SSLCiphers))
 
 	return nil
 }
@@ -438,6 +444,7 @@ func resourceVirtualServerSet(d *schema.ResourceData, meta interface{}) error {
 	setString(&r.WebCache.ControlOut, d, "web_cache_control_out")
 	setInt(&r.Connection.MaxClientBuffer, d, "max_client_buffer")
 	setInt(&r.Connection.MaxServerBuffer, d, "max_server_buffer")
+	setString(&r.SSL.SSLCiphers, d, "ssl_ciphers")
 
 	_, err := c.Set(r)
 	if err != nil {
