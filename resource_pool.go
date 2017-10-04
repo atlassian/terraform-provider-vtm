@@ -24,6 +24,12 @@ func resourcePool() *schema.Resource {
 				ForceNew: true,
 			},
 
+			"keepalive": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
+
 			"bandwidth_class": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -254,6 +260,7 @@ func resourcePoolRead(d *schema.ResourceData, meta interface{}) error {
 		return fmt.Errorf("Error reading resource: %s", err)
 	}
 
+	d.Set("keepalive", bool(*r.HTTP.Keepalive))
 	d.Set("bandwidth_class", string(*r.Basic.BandwidthClass))
 	d.Set("connection_max_connect_time", int(*r.Connection.MaxConnectTime))
 	d.Set("connection_max_connections_per_node", int(*r.Connection.MaxConnectionsPerNode))
@@ -327,6 +334,7 @@ func resourcePoolSet(d *schema.ResourceData, meta interface{}) error {
 	c := meta.(*providerConfig).client
 	r := stingray.NewPool(d.Get("name").(string))
 
+	setBool(&r.HTTP.Keepalive, d, "keepalive")
 	setString(&r.Basic.BandwidthClass, d, "bandwidth_class")
 	setInt(&r.Connection.MaxConnectTime, d, "connection_max_connect_time")
 	setInt(&r.Connection.MaxConnectionsPerNode, d, "connection_max_connections_per_node")
@@ -365,9 +373,9 @@ func resourcePoolSet(d *schema.ResourceData, meta interface{}) error {
 
 			VtmNode := &stingray.Node{}
 			VtmNode.Node = stingray.String(terraformNode["node"].(string))
-                        if terraformNode["weight"].(int) != 0 {
-                                VtmNode.Weight = stingray.Int(terraformNode["weight"].(int))
-                        }
+			if terraformNode["weight"].(int) != 0 {
+				VtmNode.Weight = stingray.Int(terraformNode["weight"].(int))
+			}
 			VtmNode.Priority = stingray.Int(terraformNode["priority"].(int))
 			VtmNode.State = stingray.String(terraformNode["state"].(string))
 
