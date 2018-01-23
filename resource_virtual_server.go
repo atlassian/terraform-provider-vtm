@@ -211,6 +211,12 @@ func resourceVirtualServer() *schema.Resource {
 				Default:  "",
 			},
 
+			"ssl_support_ssl2": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "use_default",
+			},
+
 			"ssl_support_ssl3": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -386,6 +392,7 @@ func resourceVirtualServerRead(d *schema.ResourceData, meta interface{}) error {
 	d.Set("max_client_buffer", int(*r.Connection.MaxClientBuffer))
 	d.Set("max_server_buffer", int(*r.Connection.MaxServerBuffer))
 	d.Set("ssl_ciphers", string(*r.SSL.SSLCiphers))
+	d.Set("ssl_support_ssl2", string(*r.SSL.SSLSupportSSL2))
 	d.Set("ssl_support_ssl3", string(*r.SSL.SSLSupportSSL3))
 	d.Set("ssl_support_tls1", string(*r.SSL.SSLSupportTLS1))
 	d.Set("ssl_support_tls1_1", string(*r.SSL.SSLSupportTLS11))
@@ -473,6 +480,7 @@ func resourceVirtualServerSet(d *schema.ResourceData, meta interface{}) error {
 	setInt(&r.Connection.MaxClientBuffer, d, "max_client_buffer")
 	setInt(&r.Connection.MaxServerBuffer, d, "max_server_buffer")
 	setString(&r.SSL.SSLCiphers, d, "ssl_ciphers")
+	setString(&r.SSL.SSLSupportSSL2, d, "ssl_support_ssl2")
 	setString(&r.SSL.SSLSupportSSL3, d, "ssl_support_ssl3")
 	setString(&r.SSL.SSLSupportTLS1, d, "ssl_support_tls1")
 	setString(&r.SSL.SSLSupportTLS11, d, "ssl_support_tls1_1")
