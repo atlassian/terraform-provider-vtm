@@ -1,12 +1,12 @@
 hash: b10e3bece09446120e485a78b13434c302dbacb1e2cbf8fd0c409ae5710f4ead
-updated: 2017-02-22T14:00:15.299471393-08:00
+updated: 2018-12-10T16:32:22.550051-08:00
 imports:
 - name: github.com/apparentlymart/go-cidr
   version: a3ebdb999b831ecb6ab8a226e31b07b2b9061c47
   subpackages:
   - cidr
 - name: github.com/atlassian/go-vtm
-  version: 1851e2bf82f539fd2993d79eb1fd5336a7d42e7f
+  version: cecd441d0e0c6e28328a725e5dbb0b3d3dc710a0
 - name: github.com/aws/aws-sdk-go
   version: 4edf620820296243715aba8774dcc76f26d1e3e5
   subpackages:
