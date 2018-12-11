@@ -295,7 +295,7 @@ func resourcePoolRead(d *schema.ResourceData, meta interface{}) error {
 
 	nodesList := make([]map[string]interface{}, 0, len(*r.Basic.NodesTable))
 
-	if !*r.DNSAutoscale.Enabled {
+	if r.DNSAutoscale.Enabled != nil && !*r.DNSAutoscale.Enabled {
 		for _, node := range *r.Basic.NodesTable {
 			nodeTerraform := make(map[string]interface{})
 			if node.Node != nil {
@@ -371,7 +371,7 @@ func resourcePoolSet(d *schema.ResourceData, meta interface{}) error {
 	setString(&r.UDP.AcceptFrom, d, "udp_accept_from")
 	setString(&r.UDP.AcceptFromMask, d, "udp_accept_from_mask")
 
-	if v, ok := d.GetOk("node"); ok && !*r.DNSAutoscale.Enabled {
+	if v, ok := d.GetOk("node"); ok && r.DNSAutoscale.Enabled != nil && !*r.DNSAutoscale.Enabled {
 		nodeList := v.(*schema.Set).List()
 
 		for _, node := range nodeList {
