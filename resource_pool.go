@@ -18,166 +18,166 @@ func resourcePool() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
-			"name": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Required: true,
 				ForceNew: true,
 			},
 
-			"keepalive": &schema.Schema{
+			"keepalive": {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  true,
 			},
 
-			"bandwidth_class": &schema.Schema{
+			"bandwidth_class": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "",
 			},
 
-			"connection_max_connect_time": &schema.Schema{
+			"connection_max_connect_time": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  4,
 			},
 
-			"connection_max_connections_per_node": &schema.Schema{
+			"connection_max_connections_per_node": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  0,
 			},
 
-			"connection_max_queue_size": &schema.Schema{
+			"connection_max_queue_size": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  0,
 			},
 
-			"connection_max_reply_time": &schema.Schema{
+			"connection_max_reply_time": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  30,
 			},
 
-			"connection_queue_timeout": &schema.Schema{
+			"connection_queue_timeout": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  10,
 			},
 
-			"dns_autoscale_enabled": &schema.Schema{
+			"dns_autoscale_enabled": {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
 			},
 
-			"dns_autoscale_hostnames": &schema.Schema{
+			"dns_autoscale_hostnames": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Set:      schema.HashString,
 			},
 
-			"dns_autoscale_port": &schema.Schema{
+			"dns_autoscale_port": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  80,
 			},
 
-			"failure_pool": &schema.Schema{
+			"failure_pool": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "",
 			},
 
-			"load_balancing_algorithm": &schema.Schema{
+			"load_balancing_algorithm": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "round_robin",
 			},
 
-			"load_balancing_priority_enabled": &schema.Schema{
+			"load_balancing_priority_enabled": {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
 			},
 
-			"load_balancing_priority_nodes": &schema.Schema{
+			"load_balancing_priority_nodes": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  1,
 			},
 
-			"max_connection_attempts": &schema.Schema{
+			"max_connection_attempts": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  0,
 			},
 
-			"max_idle_connections_pernode": &schema.Schema{
+			"max_idle_connections_pernode": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  50,
 			},
 
-			"max_timed_out_connection_attempts": &schema.Schema{
+			"max_timed_out_connection_attempts": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  2,
 			},
 
-			"monitors": &schema.Schema{
+			"monitors": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Set:      schema.HashString,
 			},
 
-			"node_close_with_rst": &schema.Schema{
+			"node_close_with_rst": {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
 			},
 
-			"node_connection_attempts": &schema.Schema{
+			"node_connection_attempts": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  3,
 			},
 
-			"node_delete_behavior": &schema.Schema{
+			"node_delete_behavior": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "immediate",
 			},
 
-			"node_drain_to_delete_timeout": &schema.Schema{
+			"node_drain_to_delete_timeout": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  0,
 			},
 
-			"node": &schema.Schema{
+			"node": {
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"node": &schema.Schema{
+						"node": {
 							Type:     schema.TypeString,
 							Required: true,
 						},
-						"weight": &schema.Schema{
+						"weight": {
 							Type:     schema.TypeInt,
 							Optional: true,
 							Default:  1,
 						},
-						"state": &schema.Schema{
+						"state": {
 							Type:     schema.TypeString,
 							Optional: true,
 							Default:  "active",
 						},
-						"priority": &schema.Schema{
+						"priority": {
 							Type:     schema.TypeInt,
 							Optional: true,
 							Default:  1,
@@ -185,49 +185,49 @@ func resourcePool() *schema.Resource {
 					},
 				},
 			},
-			"note": &schema.Schema{
+			"note": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "",
 			},
 
-			"passive_monitoring": &schema.Schema{
+			"passive_monitoring": {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  true,
 			},
 
-			"persistence_class": &schema.Schema{
+			"persistence_class": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "",
 			},
 
-			"tcp_nagle": &schema.Schema{
+			"tcp_nagle": {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  true,
 			},
 
-			"transparent": &schema.Schema{
+			"transparent": {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
 			},
 
-			"ssl_encrypt": &schema.Schema{
+			"ssl_encrypt": {
 				Type:     schema.TypeBool,
 				Optional: true,
 				Default:  false,
 			},
 
-			"udp_accept_from": &schema.Schema{
+			"udp_accept_from": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "dest_only",
 			},
 
-			"udp_accept_from_mask": &schema.Schema{
+			"udp_accept_from_mask": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "",
@@ -267,9 +267,11 @@ func resourcePoolRead(d *schema.ResourceData, meta interface{}) error {
 	d.Set("connection_max_queue_size", int(*r.Connection.MaxQueueSize))
 	d.Set("connection_max_reply_time", int(*r.Connection.MaxReplyTime))
 	d.Set("connection_queue_timeout", int(*r.Connection.QueueTimeout))
+
 	d.Set("dns_autoscale_enabled", bool(*r.DNSAutoscale.Enabled))
 	d.Set("dns_autoscale_hostnames", []string(*r.DNSAutoscale.Hostnames))
 	d.Set("dns_autoscale_port", int(*r.DNSAutoscale.Port))
+
 	d.Set("failure_pool", string(*r.Basic.FailurePool))
 	d.Set("load_balancing_algorithm", string(*r.LoadBalancing.Algorithm))
 	d.Set("load_balancing_priority_enabled", bool(*r.LoadBalancing.PriorityEnabled))
@@ -292,22 +294,26 @@ func resourcePoolRead(d *schema.ResourceData, meta interface{}) error {
 	d.Set("ssl_encrypt", bool(*r.SSL.Enable))
 
 	nodesList := make([]map[string]interface{}, 0, len(*r.Basic.NodesTable))
-	for _, node := range *r.Basic.NodesTable {
-		nodeTerraform := make(map[string]interface{})
-		if node.Node != nil {
-			nodeTerraform["node"] = string(*node.Node)
+
+	if !*r.DNSAutoscale.Enabled {
+		for _, node := range *r.Basic.NodesTable {
+			nodeTerraform := make(map[string]interface{})
+			if node.Node != nil {
+				nodeTerraform["node"] = string(*node.Node)
+			}
+			if node.Weight != nil {
+				nodeTerraform["weight"] = int(*node.Weight)
+			}
+			if node.State != nil {
+				nodeTerraform["state"] = string(*node.State)
+			}
+			if node.Priority != nil {
+				nodeTerraform["priority"] = int(*node.Priority)
+			}
+			nodesList = append(nodesList, nodeTerraform)
 		}
-		if node.Weight != nil {
-			nodeTerraform["weight"] = int(*node.Weight)
-		}
-		if node.State != nil {
-			nodeTerraform["state"] = string(*node.State)
-		}
-		if node.Priority != nil {
-			nodeTerraform["priority"] = int(*node.Priority)
-		}
-		nodesList = append(nodesList, nodeTerraform)
 	}
+
 	d.Set("node", nodesList)
 
 	return nil
@@ -365,7 +371,7 @@ func resourcePoolSet(d *schema.ResourceData, meta interface{}) error {
 	setString(&r.UDP.AcceptFrom, d, "udp_accept_from")
 	setString(&r.UDP.AcceptFromMask, d, "udp_accept_from_mask")
 
-	if v, ok := d.GetOk("node"); ok {
+	if v, ok := d.GetOk("node"); ok && !*r.DNSAutoscale.Enabled {
 		nodeList := v.(*schema.Set).List()
 
 		for _, node := range nodeList {
