@@ -291,8 +291,8 @@ func resourcePoolRead(d *schema.ResourceData, meta interface{}) error {
 	d.Set("transparent", bool(*r.Basic.Transparent))
 	d.Set("ssl_encrypt", bool(*r.SSL.Enable))
 
-	nodesList := make([]map[string]interface{}, 0, len(r.Basic.NodesTable))
-	for _, node := range r.Basic.NodesTable {
+	nodesList := make([]map[string]interface{}, 0, len(*r.Basic.NodesTable))
+	for _, node := range *r.Basic.NodesTable {
 		nodeTerraform := make(map[string]interface{})
 		if node.Node != nil {
 			nodeTerraform["node"] = string(*node.Node)
@@ -379,10 +379,10 @@ func resourcePoolSet(d *schema.ResourceData, meta interface{}) error {
 			VtmNode.Priority = stingray.Int(terraformNode["priority"].(int))
 			VtmNode.State = stingray.String(terraformNode["state"].(string))
 
-			r.Basic.NodesTable = append(r.Basic.NodesTable, *VtmNode)
+			*r.Basic.NodesTable = append(*r.Basic.NodesTable, *VtmNode)
 		}
 	} else {
-		r.Basic.NodesTable = make([]stingray.Node, 0, 0)
+		*r.Basic.NodesTable = make([]stingray.Node, 0, 0)
 	}
 
 	_, err := c.Set(r)
