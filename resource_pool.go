@@ -371,6 +371,8 @@ func resourcePoolSet(d *schema.ResourceData, meta interface{}) error {
 	setString(&r.UDP.AcceptFrom, d, "udp_accept_from")
 	setString(&r.UDP.AcceptFromMask, d, "udp_accept_from_mask")
 
+	*r.Basic.NodesTable = make([]stingray.Node, 0, 0)
+
 	if v, ok := d.GetOk("node"); ok && r.DNSAutoscale.Enabled != nil && !*r.DNSAutoscale.Enabled {
 		nodeList := v.(*schema.Set).List()
 
@@ -387,8 +389,6 @@ func resourcePoolSet(d *schema.ResourceData, meta interface{}) error {
 
 			*r.Basic.NodesTable = append(*r.Basic.NodesTable, *VtmNode)
 		}
-	} else {
-		*r.Basic.NodesTable = make([]stingray.Node, 0, 0)
 	}
 
 	_, err := c.Set(r)
